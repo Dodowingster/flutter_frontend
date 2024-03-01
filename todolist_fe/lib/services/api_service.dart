@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class ApiService {
   static const String baseUrl = 'http://localhost:8000';
@@ -45,5 +46,21 @@ class ApiService {
       throw Exception('Failed to delete task: ${response.statusCode}');
     }
   }
+
+  static Future<List<Map<String, dynamic>>> fetchTasksWithDateTime() async {
+  final response = await http.get(Uri.parse('$baseUrl/todolist/task/'));
+  if (response.statusCode == 200) {
+    List<Map<String, dynamic>> tasks = List<Map<String, dynamic>>.from(json.decode(response.body));
+    tasks.forEach((task) {
+      DateTime dateTime = DateTime.parse(task['created_at']); 
+      String formattedDate = DateFormat('EEE, d/m/y').format(dateTime);
+      task['formattedDate'] = formattedDate;
+    });
+    return tasks;
+  } else {
+    throw Exception('Failed to load tasks: ${response.statusCode}');
+  }
+}
+
 }
 

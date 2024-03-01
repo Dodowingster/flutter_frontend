@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'api_service.dart';
+import 'package:intl/intl.dart';
+import 'services/api_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,7 +64,21 @@ class _MyHomePageState extends State<MyHomePage> {
               final task = tasks[index];
               bool isChecked = task['status'] ?? false; // Extracting isChecked
               return ListTile(
-                title: Text(task['title'] ?? ''),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(task['title'] ?? '',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                      "Task Created on: ${DateFormat('EEE dd/MM/yyyy HH:mm').format(DateTime.parse(task['created_at']))}",
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                    ),
+                  ],
+                ),
                 subtitle: Text(task['description'] ?? ''),
                 trailing: Text(
                   isChecked ? 'Completed' : 'Not Completed', // Displaying based on isChecked
@@ -71,12 +86,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: isChecked ? Colors.green : Colors.red,
                   ),
                 ),
-                onLongPress: () {
-                  _showTaskOptionsDialog(task);
-                },
-              );
-            },
-          );
+              onLongPress: () {
+                _showTaskOptionsDialog(task);
+              },
+            );
+          },
+        );
         }
       },
     ),
