@@ -44,53 +44,49 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: _tasksFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            final tasks = snapshot.data!;
-            return ListView.builder(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) {
-                final task = tasks[index];
-                return ListTile(
-                  title: Text(task['title'] ?? ''),
-                  subtitle: Text(task['description'] ?? ''),
-                  trailing: Checkbox(
-                    value: task['status'] ?? false,
-                    onChanged: (newValue) {
-                      final updatedTask = {
-                        'title': _titleController.text,
-                        'description': _descriptionController.text,
-                        'status': newValue,
-                      };
-                      _updateTask(task['id'], updatedTask);
-                    },
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(widget.title),
+    ),
+    body: FutureBuilder<List<Map<String, dynamic>>>(
+      future: _tasksFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          final tasks = snapshot.data!;
+          return ListView.builder(
+            itemCount: tasks.length,
+            itemBuilder: (context, index) {
+              final task = tasks[index];
+              bool isChecked = task['status'] ?? false; // Extracting isChecked
+              return ListTile(
+                title: Text(task['title'] ?? ''),
+                subtitle: Text(task['description'] ?? ''),
+                trailing: Text(
+                  isChecked ? 'Completed' : 'Not Completed', // Displaying based on isChecked
+                  style: TextStyle(
+                    color: isChecked ? Colors.green : Colors.red,
                   ),
-                  onLongPress: () {
-                    _showTaskOptionsDialog(task);
-                  },
-                );
-              },
-            );
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showAddTaskDialog,
-        tooltip: 'Add Task',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
+                ),
+                onLongPress: () {
+                  _showTaskOptionsDialog(task);
+                },
+              );
+            },
+          );
+        }
+      },
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: _showAddTaskDialog,
+      tooltip: 'Add Task',
+      child: const Icon(Icons.add),
+    ),
+  );
+}
 
 //delete task function
   Future<void> _deleteTask(int? taskId) async {
@@ -112,60 +108,61 @@ class _MyHomePageState extends State<MyHomePage> {
 Future<void> _showEditTaskDialog(Map<String, dynamic> task) async {
   _titleController.text = task['title'] ?? '';
   _descriptionController.text = task['description'] ?? '';
-  bool? isChecked = task['status'] ?? false;
+  bool isChecked = task['status'] ?? false; // Removed nullable type
 
   showDialog(
     context: context,
     builder: (context) {
-      return AlertDialog(
-        title: const Text('Edit Task'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
-            ),
-            TextField(
-              controller: _descriptionController,
-              decoration: const InputDecoration(labelText: 'Description'),
-            ),
-            Row(
+      return StatefulBuilder(
+        builder: (context, setState) { // Added StatefulBuilder
+          return AlertDialog(
+            title: const Text('Edit Task'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Completed:'),
-                Checkbox(
-                  value: task['status'] ?? false,
-                  onChanged: (newValue) {
-                      isChecked = newValue;
-                      setState(() {
-                        task['status'] = newValue;
-                      });
-                  },
+                TextField(
+                  controller: _titleController,
+                  decoration: const InputDecoration(labelText: 'Title'),
+                ),
+                TextField(
+                  controller: _descriptionController,
+                  decoration: const InputDecoration(labelText: 'Description'),
+                ),
+                Row(
+                  children: [
+                    const Text('Completed:'),
+                    Checkbox(
+                      value: isChecked,
+                      onChanged: (newValue) {
+                        setState(() { // Added setState to update checkbox state
+                          isChecked = newValue!;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context); // Close the dialog
-            },
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final updatedTask = {
-                'title': _titleController.text,
-                'description': _descriptionController.text,
-                'status': isChecked,
-              };
-              await _updateTask(task['id'], updatedTask);
-              Navigator.pop(context); // Close the dialog
-            },
-            child: const Text('Save'),
-          ),
-        ],
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final updatedTask = {
+                    'title': _titleController.text,
+                    'description': _descriptionController.text,
+                    'status': isChecked,
+                  };
+                  await _updateTask(task['id'], updatedTask);
+                  Navigator.pop(context); // Close the dialog
+                },
+                child: const Text('Save'),
+              ),
+            ],
+          );
+        },
       );
     },
   );
