@@ -92,21 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-// Future<void> _updateTaskStatus(int? taskId, bool? newStatus) async {
-//   if (taskId != null && newStatus != null) {
-//     try {
-//       await ApiService.updateTask(taskId, {'status': newStatus}); // Pass newStatus directly
-//       setState(() {
-//         _tasksFuture = ApiService.fetchTasks();
-//       });
-//     } catch (e) {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text('Failed to update task status: $e')),
-//       );
-//     }
-//   }
-// }
-
 //delete task function
   Future<void> _deleteTask(int? taskId) async {
     if (taskId != null) {
