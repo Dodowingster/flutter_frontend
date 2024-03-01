@@ -107,6 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //   }
 // }
 
+//delete task function
   Future<void> _deleteTask(int? taskId) async {
     if (taskId != null) {
       try {
@@ -122,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+//edit task dialog function, includes checkbox
 Future<void> _showEditTaskDialog(Map<String, dynamic> task) async {
   _titleController.text = task['title'] ?? '';
   _descriptionController.text = task['description'] ?? '';
@@ -153,12 +155,6 @@ Future<void> _showEditTaskDialog(Map<String, dynamic> task) async {
                       setState(() {
                         task['status'] = newValue;
                       });
-                      // final updatedTask = {
-                      //   'title': _titleController.text,
-                      //   'description': _descriptionController.text,
-                      //   'status': newValue,
-                      // };
-                      // _updateTask(task['id'], updatedTask);
                   },
                 ),
               ],
@@ -190,6 +186,7 @@ Future<void> _showEditTaskDialog(Map<String, dynamic> task) async {
   );
 }
 
+//update task function
 Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
   if (taskId != null) {
     try {
@@ -205,6 +202,7 @@ Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
   }
 }
 
+//show task option function
   Future<void> _showTaskOptionsDialog(Map<String, dynamic> task) async {
     showDialog(
       context: context,
@@ -238,6 +236,7 @@ Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
     );
   }
 
+//add task button function
   Future<void> _showAddTaskDialog() async {
     _titleController.clear();
     _descriptionController.clear();
