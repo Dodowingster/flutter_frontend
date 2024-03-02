@@ -1,4 +1,4 @@
-# To-Do List App
+# To-Do List A.P.P. a.k.a Anti-Procrastination Plan
 
 This is a simple To-Do List application built using Flutter framework. The app allows users to manage their tasks by adding, editing, and deleting them. It communicates with a Django backend API to perform CRUD operations on tasks.
 
@@ -25,7 +25,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 1. Clone this repository:
 
    ```
-   git clone https://github.com/Dodowingster/flutter_frontend.git
+   git clone https://github.com/Dodowingster/todolistapp.git
    ```
 
 2. Navigate to the project directory:
