@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Task List App',
+      title: 'To Do List App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Task List'),
+      home: const MyHomePage(title: 'To Do List A.P.P.(Anti-Procrastination Plan)'),
     );
   }
 }
@@ -31,16 +31,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Future<List<Map<String, dynamic>>> _tasksFuture;
+  late Future<List<Map<String, dynamic>>> _tasksFuture; 
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
 
   @override
   void initState() {
     super.initState();
-    _tasksFuture = ApiService.fetchTasks();
-    _titleController = TextEditingController();
-    _descriptionController = TextEditingController();
+    _tasksFuture = ApiService.fetchTasks(); //  fetchs tasks from Django API and returns the data into the variable
+    _titleController = TextEditingController(); // declares variable to Text Editing conroller for title
+    _descriptionController = TextEditingController(); // declares variable to Text Editing conroller for description
   }
 
   @override
@@ -52,16 +52,16 @@ class _MyHomePageState extends State<MyHomePage> {
     body: FutureBuilder<List<Map<String, dynamic>>>(
       future: _tasksFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+        if (snapshot.connectionState == ConnectionState.waiting) {  //checks for different states of aysnc operation(waiting,error)
+          return const Center(child: CircularProgressIndicator()); 
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
+          return Center(child: Text('Error: ${snapshot.error}')); //indicates to user there was a problem fetching data
         } else {
           final tasks = snapshot.data!;
           return ListView.builder(
             itemCount: tasks.length,
             itemBuilder: (context, index) {
-              final task = tasks[index];
+              final task = tasks[index]; // Extracting task at current index
               bool isChecked = task['status'] ?? false; // Extracting isChecked
               return ListTile(
                 title: Column(
@@ -120,84 +120,84 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 //edit task dialog function, includes checkbox
-Future<void> _showEditTaskDialog(Map<String, dynamic> task) async {
-  _titleController.text = task['title'] ?? '';
-  _descriptionController.text = task['description'] ?? '';
-  bool isChecked = task['status'] ?? false; // Removed nullable type
+  Future<void> _showEditTaskDialog(Map<String, dynamic> task) async {
+    _titleController.text = task['title'] ?? '';
+    _descriptionController.text = task['description'] ?? '';
+    bool isChecked = task['status'] ?? false;
 
-  showDialog(
-    context: context,
-    builder: (context) {
-      return StatefulBuilder(
-        builder: (context, setState) { // Added StatefulBuilder
-          return AlertDialog(
-            title: const Text('Edit Task'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: _titleController,
-                  decoration: const InputDecoration(labelText: 'Title'),
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Edit Task'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    decoration: const InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(labelText: 'Description'),
+                  ),
+                  Row(
+                    children: [
+                      const Text('Completed:'),
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (newValue) {
+                          setState(() { // update checkbox state
+                            isChecked = newValue!;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Cancel'),
                 ),
-                TextField(
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(labelText: 'Description'),
-                ),
-                Row(
-                  children: [
-                    const Text('Completed:'),
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (newValue) {
-                        setState(() { // Added setState to update checkbox state
-                          isChecked = newValue!;
-                        });
-                      },
-                    ),
-                  ],
+                ElevatedButton(
+                  onPressed: () async {
+                    final updatedTask = {
+                      'title': _titleController.text,
+                      'description': _descriptionController.text,
+                      'status': isChecked,
+                    };
+                    await _updateTask(task['id'], updatedTask);
+                    Navigator.pop(context); // Close the dialog
+                  },
+                  child: const Text('Save'),
                 ),
               ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final updatedTask = {
-                    'title': _titleController.text,
-                    'description': _descriptionController.text,
-                    'status': isChecked,
-                  };
-                  await _updateTask(task['id'], updatedTask);
-                  Navigator.pop(context); // Close the dialog
-                },
-                child: const Text('Save'),
-              ),
-            ],
-          );
-        },
-      );
-    },
-  );
-}
+            );
+          },
+        );
+      },
+    );
+  }
 
 //update task function
-Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
-  if (taskId != null) {
-    try {
-      await ApiService.updateTask(taskId, updatedTask);
-      setState(() {
-        _tasksFuture = ApiService.fetchTasks();
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to update task: $e')),
-      );
+  Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
+    if (taskId != null) {
+      try {
+        await ApiService.updateTask(taskId, updatedTask);
+        setState(() {
+          _tasksFuture = ApiService.fetchTasks();
+        });
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to update task: $e')),
+        );
+      }
     }
   }
-}
 
 //show task option function
   Future<void> _showTaskOptionsDialog(Map<String, dynamic> task) async {
@@ -214,7 +214,7 @@ Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
                 leading: const Icon(Icons.edit),
                 title: const Text('Edit'),
                 onTap: () {
-                  Navigator.pop(context); // Close the dialog
+                  Navigator.pop(context);
                   _showEditTaskDialog(task);
                 },
               ),
@@ -222,7 +222,7 @@ Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
                 leading: const Icon(Icons.delete),
                 title: const Text('Delete'),
                 onTap: () {
-                  Navigator.pop(context); // Close the dialog
+                  Navigator.pop(context);
                   _deleteTask(task['id']);
                 },
               ),
