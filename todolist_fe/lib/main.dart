@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                      "Task Created on: ${DateFormat('EEE dd/MM/yyyy HH:mm').format(DateTime.parse(task['created_at']))}",
+                      "Last Modified: ${DateFormat('EEE dd/MM/yyyy HH:mm').format(DateTime.parse(task['updated_at'] ?? task['created_at']))}",
                       style: const TextStyle(fontSize: 12),
                     ),
                     ),
@@ -264,26 +264,31 @@ Future<void> _updateTask(int? taskId, Map<String, dynamic> updatedTask) async {
             ),
             ElevatedButton(
               onPressed: () async {
-                final title = _titleController.text.trim();
-                final description = _descriptionController.text.trim();
-                if (title.isNotEmpty) {
-                  try {
-                    await ApiService.createTask({
-                      'title': title,
-                      'description': description,
-                      'status': false,
-                    });
-                    setState(() {
-                      _tasksFuture = ApiService.fetchTasks();
-                    });
-                    Navigator.of(context).pop();
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Failed to add task: $e')),
-                    );
-                  }
+              final title = _titleController.text.trim();
+              final description = _descriptionController.text.trim();
+              if (title.isNotEmpty && description.isNotEmpty) { // Check if both title and description are not empty
+                try {
+                  await ApiService.createTask({
+                    'title': title,
+                    'description': description,
+                    'status': false,
+                  });
+                  setState(() {
+                    _tasksFuture = ApiService.fetchTasks();
+                  });
+                  Navigator.of(context).pop();
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Failed to add task: $e')),
+                  );
                 }
-              },
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Title and description cannot be empty')),
+                );
+              }
+            },
+
               child: const Text('Add'),
             ),
           ],

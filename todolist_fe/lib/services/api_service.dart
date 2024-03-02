@@ -62,5 +62,21 @@ class ApiService {
   }
 }
 
+ static Future<List<Map<String, dynamic>>> fetchTaskWithNewDateTime() async {
+  final response = await http.get(Uri.parse('$baseUrl/todolist/task/'));
+  if (response.statusCode == 200) {
+    List<Map<String, dynamic>> tasks = List<Map<String, dynamic>>.from(json.decode(response.body));
+    tasks.forEach((task) {
+      DateTime dateTime = DateTime.parse(task['updated_at']); 
+      String formattedDate = DateFormat('EEE, d/m/y').format(dateTime);
+      task['formattedDate'] = formattedDate;
+    });
+    return tasks;
+  } else {
+    throw Exception('Failed to load tasks: ${response.statusCode}');
+  }
+}
+
+
 }
 
