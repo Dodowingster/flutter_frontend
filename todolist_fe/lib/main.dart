@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context, index) {
               final task = tasks[index]; // Extracting task at current index
               bool isChecked = task['status'] ?? false; // Extracting isChecked
+              var parsedDate = DateTime.parse(task['updated_at'] ?? task['created_at']).toUtc().add(Duration(hours: 8));
               return ListTile(
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                      "Last Modified: ${DateFormat('EEE dd/MM/yyyy HH:mm').format(DateTime.parse(task['updated_at'] ?? task['created_at']))}",
+                      "Last Modified: ${DateFormat('EEE dd/MM/yyyy HH:mm', 'en_US').format(parsedDate)}",
                       style: const TextStyle(fontSize: 12),
                     ),
                     ),
