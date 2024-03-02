@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context, index) {
               final task = tasks[index]; // Extracting task at current index
               bool isChecked = task['status'] ?? false; // Extracting isChecked
-              var parsedDate = DateTime.parse(task['updated_at'] ?? task['created_at']).toUtc().add(Duration(hours: 8));
+              var parsedDate = DateTime.parse(task['updated_at'] ?? task['created_at']).toUtc().add(const Duration(hours: 8));
               return ListTile(
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
