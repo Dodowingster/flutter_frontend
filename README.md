@@ -14,6 +14,14 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 ![To-Do List App Screenshot](resource/ToDoListApp.gif)
 
+## Instructions
+
+1. Download the release of this githup project and extract it anywhere.
+
+2. Make sure django backend server is up and running. More instructions on that here: https://dodowingster.github.io/django_backend/
+
+3. Run the todolist_fe.exe
+
 ## Dependencies
 
 - **flutter/material.dart**: UI components for building the app.
