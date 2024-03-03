@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'services/api_service.dart';
+import 'themes/darktheme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'To Do List App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: DarkTheme.themeData,
       home: const MyHomePage(title: 'To Do List A.P.P.(Anti-Procrastination Plan)'),
     );
   }
@@ -289,8 +288,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               }
             },
-
-              child: const Text('Add'),
+            child: const Text('Add'),
             ),
           ],
         );
