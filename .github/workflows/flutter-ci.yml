@@ -6,13 +6,27 @@ on:
       - main
 
 jobs:
+  create_release:
+    name: Create Release
+    runs-on: windows-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Test Connection
-      run: curl "https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json" 
-
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -27,3 +41,15 @@ jobs:
 
     - name: Build execution file
       run: cd todolist_fe && flutter build windows
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: todolist_fe/build/windows/x64/runner/Release/todolist_fe.exe
+        asset_name: todolist_fe.exe
+        asset_content_type: application/octet-stream
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
