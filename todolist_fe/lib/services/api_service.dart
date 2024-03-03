@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:8000'; //base URL for API Endpoint
+  static const String baseUrl = 'http://10.0.2.2:8000'; //base URL for API Endpoint
 
 ///GET Method for Tasks from API 
   static Future<List<Map<String, dynamic>>> fetchTasks() async {
