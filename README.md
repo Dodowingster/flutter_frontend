@@ -13,7 +13,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 ## :wrench:Instructions
 
 1. Download the release of this github project and extract it somewhere. <br>
-   Note: you may need to use [7zip](https://www.7-zip.org/) or [WinRAR](https://www.win-rar.com/start.html?&L=0) to extract the contents
+   :speech_baloon:Note: you may need to use [7zip](https://www.7-zip.org/) or [WinRAR](https://www.win-rar.com/start.html?&L=0) to extract the contents
 
    ![Download from Release](resource/DownloadRelease.gif)
 
@@ -25,13 +25,13 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
    ![Launch App](resource/LaunchApp.gif)
 
-## Dependencies
+## :pushpin:Dependencies
 
 - **flutter/material.dart**: UI components for building the app.
 - **intl**: Internationalization support for formatting dates.
 - **[http](https://pub.dev/packages/http)**: Used for making HTTP requests.
 
-## Usage
+## :white_check_mark:Usage
 
 - Upon launching the app, you'll see a list of existing tasks (if any).
 - Tap the "+" button to add a new task. Fill in the title and description, then tap "Add" to save.
