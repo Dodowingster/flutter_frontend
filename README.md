@@ -2,7 +2,7 @@
 
 This is a simple To-Do List application built using Flutter framework. The app allows users to manage their tasks by adding, editing, and deleting them. It communicates with a Django backend API to perform CRUD operations on tasks.
 
-## Features
+## :star2:Features
 
 - **View Tasks**: View a list of tasks with their titles, descriptions, and completion status.
 - **Add Task**: Add new tasks with titles and descriptions.
@@ -10,7 +10,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 - **Delete Task**: Remove tasks from the list.
 - **Anti-Procrastination Plan (A.P.P.)**: Encourages users to stay productive by managing their tasks effectively.
 
-## Instructions
+## :wrench:Instructions
 
 1. Download the release of this githup project and extract it somewhere. <br>
    Note: you may need to use [7zip](https://www.7-zip.org/) or [WinRAR](https://www.win-rar.com/start.html?&L=0) to extract the contents
