@@ -22,11 +22,8 @@ jobs:
         flutter-version: '3.19.x'
         channel: 'stable'
     
-    - name: Change directory to root flutter app folder
-      run: cd todolist_fe
-
     - name: Get dependencies
-      run: flutter pub get
+      run: cd todolist_fe && flutter pub get
 
     - name: Build execution file
-      run: flutter build windows
+      run: cd todolist_fe && flutter build windows
