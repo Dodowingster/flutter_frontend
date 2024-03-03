@@ -10,18 +10,52 @@ This is a simple To-Do List application built using Flutter framework. The app a
 - **Delete Task**: Remove tasks from the list.
 - **Anti-Procrastination Plan (A.P.P.)**: Encourages users to stay productive by managing their tasks effectively.
 
+## Pre-requisites
+
+- [**Flutter SDK**](https://docs.flutter.dev/get-started/install)
+- [**Android Studio**](https://developer.android.com/studio)
+
+
 ## :wrench:Instructions
 
-1. Download the release of this github project and extract it somewhere. <br>
-   Note: you may need to use [7zip](https://www.7-zip.org/) or [WinRAR](https://www.win-rar.com/start.html?&L=0) to extract the contents
+1. Clone this Repository
 
-   ![Download from Release](resource/DownloadRelease.gif)
+   ```
+   git clone https://github.com/Dodowingster/todolistapp.git
+   ```
+
+2. Navigate into the todolist app directory
+
+   ```
+   cd todolist_fe
+   ```
+
+1. Install Dependencies using:
+
+   ```
+   flutter pub get
+   ```
+
+2. Build the apk with this command line:
+
+   ```
+   flutter build apk
+   ```
+
+3. Start Android Studio Virtual Device. This mobile app was tested on Pixel 8 Pro
+
+
+3. Install the apk into your virtual device
+
+   ```
+   flutter install
+   ```
 
 2. Make sure django backend server is up and running. More instructions on that here: https://dodowingster.github.io/django_backend/
 
    ![docker compose up](https://github.com/Dodowingster/django_backend/blob/main/resource/dockercomposeup.gif)
 
-3. Run the todolist_fe.exe
+3. Launch the todolist_fe app
 
    ![Launch App](resource/LaunchApp.gif)
 
