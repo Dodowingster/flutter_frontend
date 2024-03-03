@@ -12,7 +12,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 ## :wrench:Instructions
 
-1. Download the release of this githup project and extract it somewhere. <br>
+1. Download the release of this github project and extract it somewhere. <br>
    Note: you may need to use [7zip](https://www.7-zip.org/) or [WinRAR](https://www.win-rar.com/start.html?&L=0) to extract the contents
 
    ![Download from Release](resource/DownloadRelease.gif)
