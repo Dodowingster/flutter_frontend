@@ -16,7 +16,10 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 ## Instructions
 
-1. Download the release of this githup project and extract it anywhere.
+1. Download the release of this githup project and extract it somewhere. <br>
+   Note: you may need to use [7zip](https://www.7-zip.org/) or [WinRAR](https://www.win-rar.com/start.html?&L=0) to extract the contents
+
+   ![Download from Release](resource/DownloadRelease.gif)
 
 2. Make sure django backend server is up and running. More instructions on that here: https://dodowingster.github.io/django_backend/
 
