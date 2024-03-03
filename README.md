@@ -36,10 +36,18 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
       b. If you do not have the Flutter SDK installed, click Download SDK.
 
+4. VS Code prompts you to add SDK to Path. Click on the giant blue button.
+
 4. Clone this repository:
 
    ```
    git clone https://github.com/Dodowingster/todolistapp.git
+   ```
+
+6. Navigate to the root of the flutter directory by putting these into the terminal:
+
+   ```
+   cd todolist_fe
    ```
 
 5. Install the dependencies using:
