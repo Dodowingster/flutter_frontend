@@ -42,7 +42,13 @@ This is a simple To-Do List application built using Flutter framework. The app a
    git clone https://github.com/Dodowingster/todolistapp.git
    ```
 
-5.  Press F5!
+5.  Install the dependencies using:
+
+   ```
+   flutter pub get
+   ```
+
+6. Press F5 to launch flutter app
 
 ## Usage
 
