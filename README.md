@@ -18,7 +18,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 - **flutter/material.dart**: UI components for building the app.
 - **intl**: Internationalization support for formatting dates.
-- **api_service.dart**: Custom service for interacting with the Django backend API.
+- **[http](https://pub.dev/packages/http)**: Used for making HTTP requests.
 
 ## Installation
 
