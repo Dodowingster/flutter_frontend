@@ -20,7 +20,11 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 2. Make sure django backend server is up and running. More instructions on that here: https://dodowingster.github.io/django_backend/
 
+   ![docker compose up](https://github.com/Dodowingster/django_backend/blob/main/resource/dockercomposeup.gif)
+
 3. Run the todolist_fe.exe
+
+   ![Launch App](resource/LaunchApp.gif)
 
 ## Dependencies
 
