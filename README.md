@@ -48,6 +48,8 @@ This is a simple To-Do List application built using Flutter framework. The app a
    flutter pub get
    ```
 
+6. Make sure my [django backend server](https://github.com/Dodowingster/todolistapp) is up and running 
+
 6. Press F5 to launch flutter app
 
 ## Usage
