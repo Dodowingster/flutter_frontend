@@ -10,10 +10,6 @@ This is a simple To-Do List application built using Flutter framework. The app a
 - **Delete Task**: Remove tasks from the list.
 - **Anti-Procrastination Plan (A.P.P.)**: Encourages users to stay productive by managing their tasks effectively.
 
-## Screenshots
-
-![To-Do List App Screenshot](resource/ToDoListApp.gif)
-
 ## Instructions
 
 1. Download the release of this githup project and extract it somewhere. <br>
@@ -42,3 +38,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 - Long press on a task to bring up options for editing or deleting it.
 - To edit a task, tap on "Edit" from the options, make necessary changes, and tap "Save".
 - To delete a task, tap on "Delete" from the options.
+
+## Screenshots
+
+![To-Do List App Screenshot](resource/ToDoListApp.gif)
