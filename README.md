@@ -21,12 +21,12 @@ This is a simple To-Do List application built using Flutter framework. The app a
    Android SDKs and Android Emulator to test the app and connect it to a running localhost server. Follow Android Studio installation method from the Flutter documentation.
    Once you have them installed, launch Android Studio, Select SDK Manager and make sure all these boxes are ticked. Click Apply afterwards.
 
-      <details>
-      <summary>Preview SDK Manager Setup</summary>
+  <details>
+  <summary>Preview SDK Manager Setup</summary>
 
-      ![SDK Manager](resource/AndroidStudioSetup.gif)
+  ![SDK Manager](resource/AndroidStudioSetup.gif)
 
-      </details><br>
+  </details><br>
 
 ## :wrench:Instructions
 
