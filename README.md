@@ -10,10 +10,15 @@ This is a simple To-Do List application built using Flutter framework. The app a
 - **Delete Task**: Remove tasks from the list.
 - **Anti-Procrastination Plan (A.P.P.)**: Encourages users to stay productive by managing their tasks effectively.
 
-## Pre-requisites
+## :tada:Pre-requisites
 
 - [**Flutter SDK**](https://docs.flutter.dev/get-started/install)
+  
+   To run Flutter command lines in your terminal.
+
 - [**Android Studio**](https://developer.android.com/studio)
+   
+   Android SDKs and Android Emulator to test the app and connect it to a running localhost server
 
 
 ## :wrench:Instructions
