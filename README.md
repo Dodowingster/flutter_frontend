@@ -26,7 +26,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
       ![SDK Manager](resource/AndroidStudioSetup.gif)
 
-      </details>
+      </details><br>
 
 ## :wrench:Instructions
 
@@ -58,11 +58,11 @@ This is a simple To-Do List application built using Flutter framework. The app a
    Depencies installed.
 
       <details>
-      <summary>Preview Android Virtual Device</summary>
+      <summary>Preview Launching Android Virtual Device</summary>
       
       ![Launch Android Virtual Device](resource/VirtualDeviceLaunch.gif)
 
-      </details>
+      </details><br>
 
 3. Install the apk into your virtual device
 
@@ -77,7 +77,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
       ![docker compose up](https://github.com/Dodowingster/django_backend/blob/main/resource/dockercomposeup.gif)
 
-      </details>
+      </details><br>
 
 3. Launch the App
 
@@ -86,7 +86,7 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
       ![Launch App](resource/LaunchApp.gif)
 
-      </details>
+      </details><br>
 
 ## :pushpin:Dependencies
 
