@@ -14,12 +14,14 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 - [**Flutter SDK**](https://docs.flutter.dev/get-started/install)
   
-   To run Flutter command lines in your terminal.
+   To run Flutter command lines in your terminal. Follow the Flutter installation documentation and pick your OS and then for Android. Proceed with the installation document.
 
 - [**Android Studio**](https://developer.android.com/studio)
    
-   Android SDKs and Android Emulator to test the app and connect it to a running localhost server
+   Android SDKs and Android Emulator to test the app and connect it to a running localhost server. Follow Android Studio installation method from the Flutter documentation.
+   Once you have them installed, launch Android Studio, Select SDK Manager and make sure all these boxes are ticked. Click Apply afterwards.
 
+   ![SDK Manager](resource/AndroidStudioSetup.gif)
 
 ## :wrench:Instructions
 
@@ -47,8 +49,13 @@ This is a simple To-Do List application built using Flutter framework. The app a
    flutter build apk
    ```
 
-3. Start Android Studio Virtual Device. This mobile app was tested on Pixel 8 Pro
+3. Start Android Emulator Virtual Device. This mobile app was tested on Pixel 8 Pro, but you may try on other devices whichever you prefer. Make sure to have the Virtual Device
+   Depencies installed.
 
+   <details>
+   <summary>Preview</summary>
+   ![Launch Android Virtual Device](resource/VirtualDeviceLaunch.gif)
+   </details>
 
 3. Install the apk into your virtual device
 
