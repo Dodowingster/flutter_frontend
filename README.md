@@ -21,7 +21,12 @@ This is a simple To-Do List application built using Flutter framework. The app a
    Android SDKs and Android Emulator to test the app and connect it to a running localhost server. Follow Android Studio installation method from the Flutter documentation.
    Once you have them installed, launch Android Studio, Select SDK Manager and make sure all these boxes are ticked. Click Apply afterwards.
 
+   <details>
+   <summary>Preview SDK Manager Setup</summary>
+
    ![SDK Manager](resource/AndroidStudioSetup.gif)
+
+   </details>
 
 ## :wrench:Instructions
 
@@ -53,10 +58,10 @@ This is a simple To-Do List application built using Flutter framework. The app a
    Depencies installed.
 
    <details>
-   <summary>Preview</summary>
+   <summary>Preview Android Virtual Device</summary>
    
    ![Launch Android Virtual Device](resource/VirtualDeviceLaunch.gif)
-   
+
    </details>
 
 3. Install the apk into your virtual device
@@ -67,11 +72,21 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
 2. Make sure django backend server is up and running. More instructions on that here: https://dodowingster.github.io/django_backend/
 
+   <details>
+   <summary>Preview 'docker compose up' in Terminal</summary>
+
    ![docker compose up](https://github.com/Dodowingster/django_backend/blob/main/resource/dockercomposeup.gif)
 
-3. Launch the todolist_fe app
+   </details>
+
+3. Launch the App
+
+   <details>
+   <summary>Preview Launch TodoList A.P.P.</summary>
 
    ![Launch App](resource/LaunchApp.gif)
+
+   </details>
 
 ## :pushpin:Dependencies
 
