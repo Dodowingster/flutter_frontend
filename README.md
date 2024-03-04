@@ -54,7 +54,9 @@ This is a simple To-Do List application built using Flutter framework. The app a
 
    <details>
    <summary>Preview</summary>
+   
    ![Launch Android Virtual Device](resource/VirtualDeviceLaunch.gif)
+   
    </details>
 
 3. Install the apk into your virtual device
