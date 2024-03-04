@@ -151,9 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
           _tasksFuture = ApiService.fetchTasks();
         });
       } catch (e) {
+        if(mounted){
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Failed to delete task: $e')),
         );
+        }
       }
     }
   }
@@ -226,8 +228,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       'status': isChecked,
                     };
                     await _updateTask(task['id'], updatedTask);
+                    if (!context.mounted) return;
                     Navigator.pop(context); // Close the dialog
-                  },
+                  },  
                   child: const Text('Save'),
                 ),
               ],
@@ -269,9 +272,11 @@ class _MyHomePageState extends State<MyHomePage> {
           _tasksFuture = ApiService.fetchTasks();
         });
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to update task: $e')),
-        );
+        if(mounted){
+          ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Failed to update task: $e')),
+            );
+          }
       }
     }
   }
@@ -402,6 +407,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   setState(() {
                     _tasksFuture = ApiService.fetchTasks();
                   });
+                  if (!context.mounted) return;
                   Navigator.of(context).pop();
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
